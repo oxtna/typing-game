@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+}
+
+.no-display {
+  display: none;
+}
+
+.container {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.heading {
+  /* adjust font size and decorate it */
+}
+
+.description {
+  /* adjust font size */
+}
+
+.start-button {
+  /* decorate it */
+}
+
+.textbox {
+  /* outline + background color + const size */
+}
+
+.text {
+  font-family: "Monaco", monospace;
+}
+
+.written {
+  color: lightgray;
+}
+
+.not-yet-written {
+  color: black;
+}
+
+.score {
+  /* some fancy score font + transition */
+}
+
+.input {
+  font-family: "Monaco", monospace;
+}
+
+.input.wrong {
+  background-color: red;
+  color: white;
+}
