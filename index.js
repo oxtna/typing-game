@@ -7,7 +7,7 @@ const input = document.querySelector('.input');
 let chosenText;
 let textIndex;
 let currentWord = 0;
-let scoreNum = 0;
+let startTime = null;
 
 startButton.addEventListener('click', () => {
 	texts.forEach((text) => {
@@ -28,25 +28,29 @@ startButton.addEventListener('click', () => {
 	score.classList.add('no-display');
 });
 
-input.addEventListener('input', (event) => {
-	if (chosenText[currentWord] === event.target.value) {
-		writtenTexts[textIndex].innerHTML += event.target.value;
-		notYetWrittenTexts[textIndex].innerHTML = notYetWrittenTexts[textIndex].innerHTML.substring(event.target.value.length);
+input.addEventListener('input', () => {
+	if (startTime === null) {
+		startTime = new Date().getTime();
+	}
+	if (chosenText[currentWord] === input.value) {
+		writtenTexts[textIndex].innerHTML += input.value;
+		notYetWrittenTexts[textIndex].innerHTML = notYetWrittenTexts[textIndex].innerHTML.substring(input.value.length);
 		currentWord++;
-		event.target.value = '';
+		input.value = '';
 	}
 	if (currentWord === chosenText.length) {
 		texts[textIndex].classList.add('no-display');
 		notYetWrittenTexts[textIndex].innerHTML = writtenTexts[textIndex].innerHTML;
 		writtenTexts[textIndex].innerHTML = '';
 		currentWord = 0;
-		score.innerHTML = scoreNum.toString();
+		let elapsedTime = (new Date().getTime() - startTime) / 1000;
+		score.innerHTML = `${elapsedTime} s`;
 		score.classList.remove('no-display');
 		input.setAttribute('disabled', true);
 		startButton.removeAttribute('disabled');
 		return;
 	}
-	if (chosenText[currentWord].startsWith(event.target.value)) {
+	if (chosenText[currentWord].startsWith(input.value)) {
 		input.classList.remove('wrong');
 	} else {
 		input.classList.add('wrong');
